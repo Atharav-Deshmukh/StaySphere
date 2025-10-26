@@ -1,7 +1,7 @@
 # StaySphere
-StaySphere is a full-stack web application inspired by Airbnb. It allows users to browse, create, edit, delete, and review property listings. This project is built on the MVC (Model-View-Controller) architecture and integrates multiple services for a complete user experience, including authentication, image-hosting, and interactive maps.
+StaySphere is a full-stack web application inspired by Airbnb. It allows users to browse, create, edit, delete, and review property listings. This project is built on the MVC (Model-View-Controller) architecture and integrates multiple services for a complete user experience, including authentication, image hosting, and interactive maps.
 
-This project is live and deployed on Render. (Note: Link is from your Render logs, it may be different if you redeployed).
+This project is live and deployed on Render. (Note: Link is from your Render logs, it may be different if you redeployed.)
 
 ---
 
@@ -19,7 +19,7 @@ This project is live and deployed on Render. (Note: Link is from your Render log
 
 ---
 
-# Tech Stack
+## Tech Stack
 
 * Backend: Node.js, Express.js
 * Database: MongoDB (with Mongoose)
@@ -29,3 +29,5 @@ This project is live and deployed on Render. (Note: Link is from your Render log
 * Maps: Mapbox API
 * Validation: Joi
 * Deployment: Render
+
+---
