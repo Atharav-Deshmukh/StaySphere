@@ -1,0 +1,144 @@
+/* body {
+    background-color:khaki;
+} */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+}
+
+.container {
+    flex-grow: 1;
+}
+
+/* N A V --- B A R  */
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;   /* Important Means OverRider The BootStrap Styling  */
+}
+
+/*--- F - O - O - T - E - R ---*/
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+.f-info-links, .f-info-socials, .f-info-brand{
+    width: 100%;
+}
+
+.f-info-socials  i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+.f-info {
+    text-align: center;
+    height: 5rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; /* Corrected value */
+}
+
+
+/* C A R D's  */
+.listing-card {
+    border: none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text {
+    font-weight: 400 !important;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+/* Card Effect */
+.card-img-overlay {
+    opacity: 0;
+    background: white;
+    transition: all 0.5s ease-in-out;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.3;
+    transform: scale(1.1);
+
+}
+/* S H O W ----- CLASSES  */
+
+.show-img {
+    height: 30vh;
+}
+
+.btns {
+    display: flex;
+}
+
+.show-card {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* MAP */
+#map { 
+    height: 400px;
+    width: 87vh;
+    border-radius: 15px;
+    }
+
+
+    a.nav-link b {
+        font-weight: bold !important;
+      }
+
+      .nav-link {
+        font-weight: bold;       /* Makes the text bold */
+        color: #333;             /* Sets a default dark gray color */
+        text-decoration: none;   /* Removes the default underline */
+        
+        /* This makes the hover effect smooth */
+        transition: color 0.3s ease;
+      }
+      
+      /* This is the hover effect */
+      .nav-link:hover {
+        color: #007bff; /* Changes color to blue on hover. Change this color to whatever you want! */
+      }
+
+
+
+
+ /* --- Navbar Logo --- */
+.navbar-logo {
+    height: 35px; /* You can change this number (e.g., 40px, 45px) */
+    width: auto; 
+    padding-right: 0px;
+    margin-right: 0px;
+    border: 0;
+  }
