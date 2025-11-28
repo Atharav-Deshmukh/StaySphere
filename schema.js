@@ -1,6 +1,9 @@
+/*
+* FILE: Airbnb/schema.js
+* FIX: Changed 'review: Joi.object' to 'Review: Joi.object' to match your form.
+*/
 const Joi = require('joi');
 
-// ------ T H I S ------ F O R ------ V A L I D A T I O N ------
 module.exports.listingSchema = Joi.object({
     listing: Joi.object({
         title: Joi.string().required(),
@@ -8,18 +11,19 @@ module.exports.listingSchema = Joi.object({
         location: Joi.string().required(),
         country: Joi.string().required(),
         price: Joi.number().required().min(0),
-        
-        // This is the corrected part
         image: Joi.object({
-            url: Joi.string().allow("", null) 
-        })
+            url: Joi.string().allow("", null),
+            filename: Joi.string().allow("", null)
+        }).optional(),
+        category: Joi.string().required() 
     }).required()
 });
 
-
+// --- THIS IS THE FIX ---
+// The schema now expects "Review" (uppercase R)
 module.exports.reviewSchema = Joi.object({
     Review: Joi.object({
         rating: Joi.number().required().min(1).max(5),
         comment: Joi.string().required()
-    }).required() 
-}).required();
+    }).required()
+});

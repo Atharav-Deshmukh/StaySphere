@@ -1,31 +1,30 @@
 <style>
   .search-btn {
-    background-color: #fe424d;
+    background-color: #e75856;
     color: #fff;
-    border-radius: 25px;
+    border-radius: 50px;
     padding: 0 1rem 0 1rem;
   }
   .search-btn:hover {
-    background-color: #fe424d;
+    background-color:#e75856;
     color: #fff;
   }
   .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
-  }
+    margin-right: auto;
+}
 
   .search-inp {
     border-radius: 25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top my-element-with-bottom-shadow ">
   <div class="container-fluid">
    
     <a class="navbar-brand" href="/listings">
-      <img src="/IMG/Logo2.jpg" alt="StaySphere Logo" style="height: 30px;">
+      <img src="/IMG/LOGO.jpg" alt="StaySphere Logo" style="height: 2.7rem;">
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,27 +36,33 @@
       </div>
 
       <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input class="form-control search-inp
-                        me-2 
-                        search-input" type="search" placeholder="Search Destication "  >
-          <button class="btn btn-search search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i> Search
-          </button>
-         </form>
+        <form class="d-flex" role="search" method="get" action="/listings/search">
+          <input class="form-control me-2 search-inp" 
+          type="search" placeholder="Search Destination"
+          name="q" aria-label="Search">
+          
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass" style="color: #fafafa;"></i>  </button>
+        </form>
       </div>
 
       <div class="navbar-nav ms-auto"> 
-        <a class="nav-link" href="/listings/new">Add New Listings</a>
+        <a class="nav-link" href="/listings/new">Add Listing</a>
         <% if(!currUser) { %>               
           <a class="nav-link Bold"  href="/signup">Sign Up</a>
           <a class="nav-link Bold" href="/login">Login</a>
         <% } %> 
 
         <% if(currUser) { %>
-          <a class="nav-link btn btn-outline-danger Bold" href="/logout">Logout</a>
+          <a class="nav-link btn btn-outline-danger Bold " href="/logout">Logout</a>
+
+          <div class="ms-2 user-img" >
+            <a href="/userinfo"> <img src="/IMG/User.jpg" alt="" class="userIMG ml-10"></a>
+          </div>
         <% } %>
       </div>
     </div>
   </div>
 </nav>
+
+

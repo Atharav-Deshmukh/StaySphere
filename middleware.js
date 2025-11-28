@@ -15,11 +15,9 @@ module.exports.validate_Listing = (req, res, next) => {
   };
 
 //------- V A L I D A T E - -- -- -- - L I S T I N G ----------//
-  
    module.exports.validate_Review = (req, res, next) => {
       const { error } = reviewSchema.validate(req.body);
       if (error) {
-          // Joi will now produce the correct error message, like "'Review.comment' is required"
           const errMsg = error.details.map(el => el.message).join(',');
           throw new ExpressError(400, errMsg);
       } else {
@@ -28,23 +26,21 @@ module.exports.validate_Listing = (req, res, next) => {
   };
 
 
-module.exports.isLoggedIn = (req, res, next) => {
-    console.log(req.user)
-    if(!req.isAuthenticated()) {  // s a method provided by Passport.js that checks if a user is not currently logged in.
-       // Redirect URL Save Means Suppose we go to add listing but we can't login --- after login we go to add listing or other that URL we have
+  module.exports.isLoggedIn = (req, res, next) => {
+    if(!req.isAuthenticated()) {
         req.session.redirectUrl = req.originalUrl;
-        req.flash("error", "you must be logged in to create listings!")
-        return res.redirect("/login")
+        req.flash("error", "You must be logged in to create listings!");
+        return req.session.save(() => {
+            res.redirect("/login");
+        });
     }
     next();
 }
 
 
 module.exports.Save_Redirect_URL = (req, res, next) => {
-    // If the user was redirected to login, req.session.redirectUrl will exist.
     if (req.session.redirectUrl) {
         res.locals.redirectUrl = req.session.redirectUrl;
-        delete req.session.redirectUrl; // Edited To Test
     }
     next();
 };
@@ -59,7 +55,7 @@ module.exports.IsOwner = async (req, res, next) => {
         return res.redirect("/listings");
     }
     if (!listing.owner.equals(req.user._id)) {
-        req.flash("error", "You Are Not The Owner Of this Listings.");
+        req.flash("error", "You are not the owner of this listing.");
         return res.redirect(`/listings/${id}`);
     }
     next();

@@ -1,18 +1,32 @@
 <footer>
     <div class="f-info mt-3">
         <div class="f-info-socials">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-square-facebook"></i>
-            <i class="fa-brands fa-square-whatsapp"></i>
-            <i class="fa-brands fa-youtube"></i>
-            <i class="fa-brands fa-square-linkedin"></i>
+            <a href="https://www.instagram.com/staysphere_/" "><i class="fa-brands fa-instagram" style="color: red;"></i></a>
+            <a href="https://whatsapp.com/channel/0029VbAwlhk8KMqoZi0Bon0w"><i class="fa-brands fa-square-whatsapp" style="color: green;"></i></a>
+            <a href="https://www.youtube.com/@AtharvDeshmukh-b5y"><i class="fa-brands fa-youtube" style="color: red;"></i></a>
         </div>
 
-        <div class="f-info-brand"> &copy;StaySphere Private Limited</div>
-
+        <div class="f-info-brand">
+            &copy; <span id="year"></span> StaySphere 
+            <span class="separator">|</span> 
+            Designed & Developed by <a href="https://www.linkedin.com/in/atharv-deshmukh-711909372/" target="_blank" class="dev-link">Atharv Deshmukh</a>
+        </div>
         <div class="f-info-links">
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
+            <a href="https://docs.google.com/document/d/1GPzrRX9HyXo0l2k39nypVOmARY6baGIYksHdj7NvVKA/preview" target="_blank">Privacy</a>
+            <span class="separator">·</span>
+            <a href="https://docs.google.com/document/d/1GPzrRX9HyXo0l2k39nypVOmARY6baGIYksHdj7NvVKA/preview" target="_blank">Terms</a>
+            <span class="separator">·</span>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqC4MeoiQL0-6HMrZ3rY2cpohbp-AThdCjYwW2PuF9BXOwsw/viewform" target="_blank">Share Feedback</a>
         </div>
+        
     </div>
 </footer>
+
+
+<script>
+    document.getElementById("year").innerText = new Date().getFullYear();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="/js/script.js"></script>

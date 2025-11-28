@@ -31,12 +31,16 @@ const { validate_Listing, isLoggedIn, IsOwner} = require("../middleware.js")
     //------ N E W --- R O U T E -------//
     Router.get("/new", isLoggedIn, ListingController.New_Route );
 
+ 
+    //------ S E A R C H --- R O U T E -------//
+    Router.get("/search", wrapAsync(ListingController.Search_Listings_Routes));
+
 
     //-- S A M E -- P A T H ---- C A L L B A C K S -------| S H O W -- OR -- U P D A T E ---- R O U T E --|
     Router.route("/:id")
-    .get( wrapAsync ( ListingController.Show_Listings_Route ) )
-    .put( isLoggedIn, IsOwner, upload.single('listing[image]'), validate_Listing, wrapAsync (ListingController.Update_Route))
-    .delete(isLoggedIn, IsOwner, wrapAsync ( ListingController.Delete_Route) )  // First Check USER is Login Or Not   Check Listing Is Valid Or Not 
+      .get( wrapAsync ( ListingController.Show_Listings_Route ) )
+      .put( isLoggedIn, IsOwner, upload.single('listing[image]'), validate_Listing, wrapAsync (ListingController.Update_Route))
+      .delete(isLoggedIn, IsOwner, wrapAsync ( ListingController.Delete_Route) )  // First Check USER is Login Or Not   Check Listing Is Valid Or Not 
 
 
     //---- E D I T ---- R O U T E -----//

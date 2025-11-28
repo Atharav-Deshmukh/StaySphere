@@ -1,9 +1,9 @@
 const express = require("express");
 const users = require("../Models/user");              
 
-//--------- R E N D I R -- S I G N - U P -- F O R M ---------//
-module.exports.Rendir_SignUp_Form = (req, res) => {
-    res.render("users/signUp.ejs") // View File
+//--------- R E N D E R -- S I G N - U P -- F O R M ---------//
+module.exports.Render_SignUp_Form = (req, res) => {
+    res.render("users/signUp.ejs") 
 }
 
 
@@ -14,42 +14,53 @@ module.exports.SignUp_Route = async(req, res) => {
         const NewUSER = new users({email, username})
         const registred_User = await users.register(NewUSER, password)
         console.log(registred_User)
+        
         req.login(registred_User, (err) => {
             if(err) {
                 return next(err)
             }
-            req.flash("success", "User Was Succesfully Register")
-            res.redirect("/listings")
+            req.flash("success", "Welcome to StaySphere!");
+            
+            req.session.save(() => {
+                let redirectUrl = res.locals.redirectUrl || "/listings"; 
+                res.redirect(redirectUrl);
+            });
         })
    } catch(e) {
-    req.flash("error", e.message)
-    res.redirect("/signup")
+        req.flash("error", e.message);
+        req.session.save(() => {
+            res.redirect("/signup");
+        });
    }
 }
 
 
-//--------- R E N D I R -- L O G I N -- F O R M ---------//
-    module.exports.Rendir_LogIn_Form =  (req, res) => {
-        res.render("users/login.ejs")
-    } 
+//--------- R E N D E R -- L O G I N -- F O R M ---------//
+module.exports.Render_LogIn_Form =  (req, res) => {
+    res.render("users/login.ejs")
+} 
 
 
 //-------- L O G I N ---------- R O U T E ---------//
-    module.exports.Login_Route = async(req, res) => {
-        req.flash("success", "Welcome back!"); 
-        // 1. Read from res.locals, not req.locals
-        // 2. Provide a default URL (e.g., "/listings") in case it's not set
-        let redirectUrl = res.locals.redirectUrl || "/listings"; // Or condiction 
+module.exports.Login_Route = async(req, res) => {
+    req.flash("success", "Welcome back!"); 
+    let redirectUrl = res.locals.redirectUrl || "/listings"; 
+   
+    req.session.save(() => {
         res.redirect(redirectUrl); 
-    }
+    });
+}
 
 //-------- L O G O U T ---------- R O U T E ---------//
-    module.exports.LogOut_Route = (req, res, next) => {
-        req.logout((err) => {
-            if(err) {
-               return next(err)
-            }
-            req.flash("success", "You Are Logged Out!")
-            res.redirect("/listings")
-        })
-    }
+module.exports.LogOut_Route = (req, res, next) => {
+    req.logout((err) => {
+        if(err) {
+           return next(err)
+        }
+        req.flash("error", "You have been logged out!");
+        
+        req.session.save(() => {
+            res.redirect("/listings");
+        });
+    })
+}

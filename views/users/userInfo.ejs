@@ -1,0 +1,61 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container mt-5"> 
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            
+            <div class="card-body p-5 mt-2">
+                
+                <div class="d-flex justify-content-center">
+                    <h1 class="profile-initial-circle">
+                        <div class="ImgLogo"> 
+                            <%= currentUser.username.charAt(0).toUpperCase() %>
+                        </div>
+                    </h1>
+                </div>
+
+                <h3 class="card-title text-center mb-4 mt-3">Your Profile</h3>
+                
+                <div class="mb-4">
+                    <label class="form-label text-muted small">Your Username</label>
+                    <div class="p-3 bg-light rounded">
+                        <h5 class="mb-0"><%= currentUser.username %></h5>
+                    </div>
+                </div>
+        
+                <div class="mb-4">
+                    <label class="form-label text-muted small">Email Address</label>
+                    <div class="p-3 bg-light rounded">
+                        <h5 class="mb-0"><%= currentUser.email %></h5>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="/listings" class="btn btn-outline-danger " >Back to Listings</a>
+                    <a class="btn btn-outline-danger Bold ms-4 " href="/logout">Logout</a>
+                    <a href="#" class="btn btn-dark disabled ms-4" aria-disabled="true">Edit (Coming soon)</a>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .ImgLogo {
+        display: inline-flex; 
+        align-items: center;
+        justify-content: center;
+        width: 100px; 
+        height: 100px;
+        background-color: #e9ecef;
+        border-radius: 50%;
+        
+        color: #6c757d;
+        font-size: 50px;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
+</style>

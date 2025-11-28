@@ -20,7 +20,7 @@
     
         <div class="mb-3">
           <label class="form-label">Current Image</label>
-          <img src="<%= org %>" class="img-fluid rounded mb-3" style="max-height: 200px; width: auto;">
+          <img src="<%= org %>" class="img-fluid rounded mb-3 " style="max-height: 200px; width: auto; ">
         </div>
         <div class="mb-3">
           <label for="image" class="form-label">Upload New Image</label>
@@ -36,6 +36,26 @@
           <div class="invalid-feedback">Please Enter valid Price</div>
         </div>
     
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label> 
+          <select class="form-select" id="category" name="listing[category]" aria-label="Select Your Category">
+              <option value="trending" <%= listing.category === 'trending' ? 'selected' : '' %>>Trending</option>
+              <option value="rooms" <%= listing.category === 'rooms' ? 'selected' : '' %>>Rooms</option>
+              <option value="cities" <%= listing.category === 'cities' ? 'selected' : '' %>>Iconic Cities</option> 
+              <option value="mountains" <%= listing.category === 'mountains' ? 'selected' : '' %>>Mountains</option>
+              <option value="castles" <%= listing.category === 'castles' ? 'selected' : '' %>>Castles</option>          
+              <option value="pools" <%= listing.category === 'pools' ? 'selected' : '' %>>Amazing pools</option>
+              <option value="camping" <%= listing.category === 'camping' ? 'selected' : '' %>>Camping</option>
+              <option value="farms" <%= listing.category === 'farms' ? 'selected' : '' %>>Farms</option>
+              <option value="domes" <%= listing.category === 'domes' ? 'selected' : '' %>>Domes</option>            
+              <option value="boats" <%= listing.category === 'boats' ? 'selected' : '' %>>Boat</option>
+              <option value="beach" <%= listing.category === 'beach' ? 'selected' : '' %>>Beach</option>            
+              <option value="treehouse" <%= listing.category === 'treehouse' ? 'selected' : '' %>>Treehouse</option>    
+              <option value="lakefront" <%= listing.category === 'lakefront' ? 'selected' : '' %>>Lakefront</option>    
+              <option value="desert" <%= listing.category === 'desert' ? 'selected' : '' %>>Desert</option>          
+          </select>
+       </div>
+
         <div class="mb-3">
           <label for="location" class="form-label">Location</label>
           <input id="location" type="text" name="listing[location]" value="<%= listing.location %>" class="form-control" required>

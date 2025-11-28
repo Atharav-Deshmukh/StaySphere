@@ -1,4 +1,3 @@
-// CRITICAL FIX: Dotenv MUST be loaded first to ensure process.env variables are available.
 if (process.env.NODE_ENV != "production") {
   require('dotenv').config();
 }
@@ -25,7 +24,8 @@ const flash = require("connect-flash");
 
 //-- I M P O R T --- F R O M --- R O U T E S --- F I L E ---//
   const Listing_File_Routes = require("./Routes/listings.js");
-  const Review_File_Routes = require("./Routes/Routes.js"); 
+  // FIX 1: Changed "./Routes/Routes.js" to "./Routes/reviews.js"
+  const Review_File_Routes = require("./Routes/reviews.js"); 
   const User_Routes = require("./Routes/Users.js");
 
 //------------ M I D D L E W A R E  -&-  C O N F I G U R A T I O N ------------//
@@ -67,7 +67,7 @@ const flash = require("connect-flash");
 //-- S e s s i o n -- C o n f i g u r a t i o n ------------------>
 
   const store =  MongoStore.create({
-    mongoUrl: SECOND_DB_URL,
+    mongoUrl: SECOND_DB_URL, 
     crypto : {
       secret:process.env.SECRET_STRING
     },
@@ -75,8 +75,8 @@ const flash = require("connect-flash");
     
   } )
 
-  store.on("error", () => {
-  console.log("ERROR in MONGO SESSION STORE", err);
+  store.on("error", (err) => { // Added 'err' parameter to log
+   console.log("ERROR in MONGO SESSION STORE", err);
   });
 
   const session_OPTION = {
@@ -126,10 +126,16 @@ const flash = require("connect-flash");
 
   app.use("/", User_Routes); 
 
+  /*- U S E R I N F O--- R O U T E S ------ - - - - ----------- - - - ->  */
+   
+  app.get("/userinfo", (req, res) => {
+    // You need to include the 'users' folder in the path
+    res.render("users/userInfo.ejs", { currentUser: req.user });
+});
+  
 /*------------ E R R O R   H A N D L I N G ------------ - - - - - - - - - ------------//
 
   404 Not Found */
-  // CORRECTED: Changed app.all(/.*/) to app.use() to fix the PathError.
   app.use((req, res, next) => { 
     next(new ExpressError(404, "Page Not Found!"))
   });
@@ -142,6 +148,8 @@ const flash = require("connect-flash");
 
 //------------ S E R V E R   S T A R T ------------ - - - - - - - - - ------------//
 
-  app.listen(8080, () => {
-      console.log("Server Started")
-  });
+// Use process.env.PORT if available, otherwise default to 8080
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log(`Server Started on port ${port}`);
+});
